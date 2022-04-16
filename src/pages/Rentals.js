@@ -3,7 +3,7 @@ import "./Rentals.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import logo from "../images/airbnbRed.png";
-import { ConnectButton, Icon } from "web3uikit";
+import { ConnectButton, Icon, Button } from "web3uikit";
 
 const Rentals = () => {
   const {state: searchFilters} = useLocation();
@@ -59,7 +59,34 @@ const Rentals = () => {
      </div>
      <hr className="line" />
      <div className="rentalsContent">
-       <div className="rentalsContentL"></div>
+       <div className="rentalsContentL">
+         Stays available for your destination
+         {rentalsList &&
+         rentalsList.map(e => {
+           return(
+             <>
+              <hr className="line2" />
+              <div className="rentalDiv">
+                <img className="rentalImg" src={e.attributes.imgUrl} alt='rentalImg'></img>
+                <div className="rentalInfo">
+                  <div className="rentalTitle">{e.attributes.name}</div>
+                  <div className="rentalDesc">{e.attributes.unoDescription}</div>
+                  <div className="rentalDesc">{e.attributes.dosDescription}</div>
+                  <div className="bottomButton">
+                    <Button 
+                    text="Stay Here"
+                    />
+                    <div className="price">
+                      <Icon fill="#808080" size={10} svg="matic" /> {e.attributes.pricePerDay} / Day
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </>
+           )
+         })
+         }
+       </div>
        <div className="rentalsContentR"></div>
      </div>
     </>
