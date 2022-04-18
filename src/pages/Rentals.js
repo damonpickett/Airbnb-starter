@@ -5,9 +5,11 @@ import { useLocation } from "react-router";
 import logo from "../images/airbnbRed.png";
 import { ConnectButton, Icon, Button } from "web3uikit";
 import RentalsMap from "../components/RentalsMap";
+import { useState } from "react";
 
 const Rentals = () => {
   const {state: searchFilters} = useLocation();
+  const [highLight, setHighLight] = useState();
   const rentalsList = [
     {
       attributes: {
@@ -68,11 +70,11 @@ const Rentals = () => {
        <div className="rentalsContentL">
          Stays available for your destination
          {rentalsList &&
-         rentalsList.map(e => {
+         rentalsList.map((e, i) => {
            return(
              <>
               <hr className="line2" />
-              <div className="rentalDiv">
+              <div className={highLight == i ? "rentalDivH" : "rentalDiv"}>
                 <img className="rentalImg" src={e.attributes.imgUrl} alt='rentalImg'></img>
                 <div className="rentalInfo">
                   <div className="rentalTitle">{e.attributes.name}</div>
@@ -94,7 +96,7 @@ const Rentals = () => {
          }
        </div>
        <div className="rentalsContentR">
-         <RentalsMap locations={cords}/>
+         <RentalsMap locations={cords} setHighLight={setHighLight}/>
        </div>
      </div>
     </>
