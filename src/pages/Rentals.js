@@ -20,6 +20,7 @@ const Rentals = () => {
 
     async function fetchRentalsList() {
       const Rentals = Moralis.Object.extend("Rentals");
+      console.log(Rentals)
       const query = new Moralis.Query(Rentals);
       query.equalTo("city", searchFilters.destination);
       query.greaterThanOrEqualTo("maxGuests_decimal", searchFilters.guests);
@@ -35,6 +36,8 @@ const Rentals = () => {
       setRentalsList(result);
 
     }
+
+    fetchRentalsList();
 
   }, [searchFilters])
 

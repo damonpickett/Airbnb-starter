@@ -12,7 +12,6 @@ function RentalsMap({locations, google, setHighLight}) {
     
     var getLng = (key) => locations[key]["lng"];
     var avgLng = arr.reduce((a, c) => a + Number(getLng(c)), 0) / arr.length;
-    console.log(google)
     setCenter({lat:avgLat, lng:avgLng})
 
   }, [locations])
@@ -41,5 +40,5 @@ function RentalsMap({locations, google, setHighLight}) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ""
+  apiKey: "AIzaSyC4NLv8Q94Uy4JgtKEqNNQERxnxkCqe47w"
 }) (RentalsMap);
