@@ -7,6 +7,7 @@ import { ConnectButton, Icon, Button, useNotification } from "web3uikit";
 import RentalsMap from "../components/RentalsMap";
 import { useState, useEffect } from "react";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import User from "../components/User";
 
 
 const Rentals = () => {
@@ -80,7 +81,7 @@ const Rentals = () => {
     }
 
     let options = {
-      contractAddress: "0x6332B53dE51d711156844866e79CF814f9D12e5E",
+      contractAddress: "0xd9145CCE52D386f254917e481eB44e9943F39138",
       functionName: "addDatesBooked",
       abi: [
         {
@@ -151,6 +152,9 @@ const Rentals = () => {
          </div>
        </div>
        <div className='lrContainers'>
+        {account &&
+        <User account={account} />
+        }
         <ConnectButton />
        </div>
      </div>
